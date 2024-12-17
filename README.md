@@ -115,7 +115,7 @@ From these results, I exported a couple datasets as GeoJson or Geopackage which 
 
 After some tinkering with the requests numbers per location for categories, I symbolized CircleMarkers to add to a folium map.
 
-You can view the web map in the notebook or by visiting the saved [html map](november-users-map.html).<br>
+You can view the web map in the notebook or opening the save the saved [html map](november-users-map.html) in a browser locally.<br>
 ![map](media/map.jpg)<br>
 Of note is zooming into the Kentucky to see which County Seats are consuming the Explorer App a lot, and which aren't consuming at all.
 
