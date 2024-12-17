@@ -51,7 +51,7 @@ curl -LO https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv >
 ```
 You could also just use these links and then rename your file to *athena_output.csv*.  **Make sure you place it in the root project folder.**
 
-Download the [CSV]( 'https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv') (4.18 GB) data file<br>
+Download the [CSV]('https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv') (4.18 GB) data file<br>
 Download the [GZIP](https://ky.box.com/shared/static/i51gwqpefsgwyooodjtuy0ima6w8u6xg.gz) (667 MB) compressed csv data file.
 
 # Notebook
@@ -115,7 +115,7 @@ From these results, I exported a couple datasets as GeoJson or Geopackage which 
 
 After some tinkering with the requests numbers per location for categories, I symbolized CircleMarkers to add to a folium map.
 
-You can view the web map in the notebook or opening the save the saved [html map](november-users-map.html) in a browser locally.<br>
+You can view the web map in the notebook or opening the saved [html map](november-users-map.html) in a browser locally.<br>
 ![map](media/map.jpg)<br>
 Of note is zooming into the Kentucky to see which County Seats are consuming the Explorer App a lot, and which aren't consuming at all.
 
