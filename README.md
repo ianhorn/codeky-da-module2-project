@@ -6,10 +6,8 @@ Kentucky is able to extends this savings as part of the [AWS Registry of Open Da
 
 My primary questions:
  - How many requests does the bucket receive from the KyFromAbove Explorer?
- - How much data is consumed (in bytes)?
  - What are the most popular images?
  - Who is using the data?
-
 ___
 
 ### Procedures
@@ -24,25 +22,26 @@ To get started clone this repo:
 
 ```bash
 git clone https://github.com/ianhorn/codeky-da-module2-project.git
-
 cd codeky-da-module2-project
-
 python3 -m venv venv
-
+# for mac/linux
 source venv/bin/activate
-
+# for windows
+source venv/Scripts/activate
 pip install -r requirements.txt
-
 ```
 ---
 ### Download the data
 
-There are two ways to download the data.  One is from the large csv file or downloading a compressed file and using gzip to decompress it.
+There are two ways to download the data.  One, download the file move and move to root directory of the repo.  
+The other is to download thelarge csv file or downloading a compressed file and using gzip to decompress it.
+
+Download the [CSV](https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv) (4.18 GB) data file<br>
+Download the [GZIP](https://ky.box.com/shared/static/i51gwqpefsgwyooodjtuy0ima6w8u6xg.gz) (667 MB) compressed csv data file.
 
 ```bash
 # the compressed file
 curl -LO https://ky.box.com/shared/static/i51gwqpefsgwyooodjtuy0ima6w8u6xg.gz
-
 # use gzip to decompress
 gzip -dc i51gwqpefsgwyooodjtuy0ima6w8u6xg.gz  > athena_output.csv
 
@@ -51,8 +50,6 @@ curl -LO https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv >
 ```
 You could also just use these links and then rename your file to *athena_output.csv*.  **Make sure you place it in the root project folder.**
 
-Download the [CSV]('https://ky.box.com/shared/static/h55nx1ca7ztcuzqvf8tu4g5q48t6lmqk.csv') (4.18 GB) data file<br>
-Download the [GZIP](https://ky.box.com/shared/static/i51gwqpefsgwyooodjtuy0ima6w8u6xg.gz) (667 MB) compressed csv data file.
 
 # Notebook
 
@@ -84,19 +81,6 @@ Name: filename, dtype: object
 
 This allowed me to see which image files in the S3 bucket are receiving the most requests.  Ideally, it would be nice to use [gdal](https://gdal.org) or similar type library to extract metadata from the files, which would give me a bounding box for the image, allowing me to map images and indexed polygons.  That's a lot of processing and beyond the scope of this project.
 
-#### Egress (bytessent)
-
-While it was interesting to see that we get average bytes sent rate of 3,191.23 bytes per second, I don't think this matters much.  The KyFromAbove Explorer entails a lot more than just pulling images from AWS.  I believe the log files specific to that App instance would be more relevant. 
-
-If I had to do it again, I would just not worry about analyzing bytessent.  What's more interesting is looking at the [logs_objects](data-project.ipynb#Calculate). <br>
-<center>
-<figure>
-<img src="media/log_objects.jpg" width="300" height="150" 
-</figure>
-</center><br>
-
-We can see that the object size is much greater than the actual bytessent value.  This tells me that all the tranformations we did to make the imagery cloud-optimized is working.  
-
 #### HTTP Status
 
 This was an interesting bit of information.  It allowed me to see that over 99% of the files have [successful GET Requests](data-project.ipynb#HTTP).
@@ -117,6 +101,7 @@ After some tinkering with the requests numbers per location for categories, I sy
 
 You can view the web map in the notebook or opening the saved [html map](november-users-map.html) in a browser locally.<br>
 ![map](media/map.jpg)<br>
+<br>
 Of note is zooming into the Kentucky to see which County Seats are consuming the Explorer App a lot, and which aren't consuming at all.
 
 ___
